@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/model/meal.dart';
+import 'package:meals/screens/meal_item.dart';
 
 class MealScreen extends StatelessWidget {
   final String title;
@@ -15,11 +15,8 @@ class MealScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget content = ListView.builder(
       itemCount: meals.length,
-      itemBuilder: (ctx, index) => Text(
-        meals[index].title,
-        style: GoogleFonts.lato(
-          color: Colors.white,
-        ),
+      itemBuilder: (ctx, index) => MealItem(
+        meal: meals[index],
       ),
     );
     if (meals.isEmpty) {
