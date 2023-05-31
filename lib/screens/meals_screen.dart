@@ -3,12 +3,14 @@ import 'package:meals/model/meal.dart';
 import 'package:meals/screens/meal_item.dart';
 
 class MealScreen extends StatelessWidget {
-  final String title;
+  final String? title;
   final List<Meal> meals;
+  final Function() onMarkAsFavourite;
   const MealScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
+    required this.onMarkAsFavourite,
   });
 
   @override
@@ -17,6 +19,7 @@ class MealScreen extends StatelessWidget {
       itemCount: meals.length,
       itemBuilder: (ctx, index) => MealItem(
         meal: meals[index],
+        onMarkAsFavourite: onMarkAsFavourite,
       ),
     );
     if (meals.isEmpty) {
@@ -44,9 +47,13 @@ class MealScreen extends StatelessWidget {
       );
     }
 
+    if (title == null) {
+      return content;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title!),
       ),
       body: content,
     );
