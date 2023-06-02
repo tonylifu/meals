@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/model/category.dart';
+import 'package:meals/model/meal.dart';
 import 'package:meals/screens/meals_screen.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final Function() onMarkAsFavourite;
+  final List<Meal> availableMeals;
   const CategoriesScreen({
     super.key,
     required this.onMarkAsFavourite,
+    required this.availableMeals,
   });
 
   @override
@@ -32,7 +35,7 @@ class CategoriesScreen extends StatelessWidget {
   }
 
   void _selectCategory(BuildContext context, Category category) {
-    final meals = dummyMeals
+    final meals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
     Navigator.of(context).push(
