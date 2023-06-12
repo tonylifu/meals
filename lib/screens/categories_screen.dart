@@ -6,11 +6,9 @@ import 'package:meals/screens/meals_screen.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  final Function() onMarkAsFavourite;
   final List<Meal> availableMeals;
   const CategoriesScreen({
     super.key,
-    required this.onMarkAsFavourite,
     required this.availableMeals,
   });
 
@@ -43,7 +41,6 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealScreen(
           title: category.title,
           meals: meals,
-          onMarkAsFavourite: onMarkAsFavourite,
         ),
       ),
     );
